@@ -17,7 +17,6 @@ public class Fibonacci {
     }
 
 
-
     /**
      * Dynamic top down - memoized
      */
@@ -40,14 +39,4 @@ public class Fibonacci {
 
         return lookup.get(n);
     }
-
-
-//    public static void main(String[] args) {
-//
-//        int n = 43;
-//
-//        System.err.println(fibM(n));
-//        System.err.println(fibT(n));
-//        System.err.println(fibR(n));
-//    }
 }
