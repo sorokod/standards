@@ -11,19 +11,20 @@ tailrec fun stoppingNumber(n: Long, ctr: Int): Int =
         if (n == 1L) ctr else stoppingNumber(next(n), ctr + 1)
 
 
-tailrec fun maxStoppingNumber(current: Int, max: Int, maxi: Int): Pair<Int, Int> {
+fun maxStoppingNumber(upperBound: Int): Pair<Int, Int> {
 
-    val s = stoppingNumber(current.toLong(), 1)
+    tailrec fun maxStoppingNumber(current: Int, max: Int, maxi: Int): Pair<Int, Int> {
+        val s = stoppingNumber(current.toLong(), 1)
 
-    return when {
-        s == 1 -> Pair(maxi, max)
-        (s > max) -> maxStoppingNumber(current - 1, s, current)
-        else -> maxStoppingNumber(current - 1, max, maxi)
+        return when {
+            s == 1 -> Pair(maxi, max)
+            (s > max) -> maxStoppingNumber(current - 1, s, current)
+            else -> maxStoppingNumber(current - 1, max, maxi)
+        }
     }
+
+    return maxStoppingNumber(upperBound, 0, 0)
 }
-
-
-fun maxStoppingNumber(upperBound: Int): Pair<Int, Int> = maxStoppingNumber(upperBound, 0, 0)
 
 
 fun main(args: Array<String>) {
